@@ -4,7 +4,7 @@ import './post-list.css';
 
 import {ListGroup} from 'reactstrap';
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
 
     const elements = posts.map((item)=>{
 
@@ -13,7 +13,8 @@ const PostList = ({posts}) => {
             <li key ={id} className = 'list-group-item'>
                 <PostListItem 
                 label = {item.label}
-                important ={item.important}/>
+                important ={item.important}
+                onDelete ={ () => onDelete(id)}/>
 
             </li> // key формирует рандомные ключи, и позволяет не перезагружать данные на старицу
         )
