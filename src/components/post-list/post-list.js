@@ -4,26 +4,27 @@ import './post-list.css';
 
 import {ListGroup} from 'reactstrap';
 
-const PostList = ({posts, onDelete}) => {
+const PostList = ({posts, onDelete, onToggleImportant,onToggleLiked}) => {
 
     const elements = posts.map((item)=>{
 
         const {id, ...itemProps} = item;
         return (
-            <li key ={id} className = 'list-group-item'>
+            <ListGroup key ={id} className = 'list-group-item'>
                 <PostListItem 
-                label = {item.label}
-                important ={item.important}
-                onDelete ={ () => onDelete(id)}/>
+                {...itemProps}
+                onDelete ={ () => onDelete(id)}
+                onToggleImportant ={ () => onToggleImportant(id)}
+                onToggleLiked ={ () => onToggleLiked(id)} />
 
-            </li> // key формирует рандомные ключи, и позволяет не перезагружать данные на старицу
+            </ListGroup> // key формирует рандомные ключи, и позволяет не перезагружать данные на старицу
         )
     });
 
     return(
-        <ListGroup className = "app-list">
+        <ul className = "app-list">
             {elements}
-        </ListGroup>
+        </ul>
     )
 }
 
